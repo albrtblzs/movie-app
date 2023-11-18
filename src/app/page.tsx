@@ -1,10 +1,15 @@
-import Image from 'next/image'
+import Section from './components/section'
+
+const content = {
+  title: 'Movie application',
+}
 
 export default function Home() {
-  const defaultClassName = 'text-red-500'
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Movie Application
+      <Section title={content.title}>
+        <div>Content</div>
+      </Section>
     </main>
   )
 }

@@ -25,3 +25,15 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+h1 {
+  @apply text-header-1;
+}
+
+h2 {
+  @apply text-header-2;
+}
+
+p {
+  @apply text-body-1;
+}
