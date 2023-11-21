@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "add": "^2.0.6",
+    "axios": "^1.6.2",
     "http-status-code": "^2.1.0",
     "next": "14.0.3",
     "react": "^18",
