@@ -29,7 +29,7 @@ const MovieCard = ({ title, overview, posterPath }: Props) => {
       className="rounded-sm bg-gray-300 cursor-pointer"
       onClick={() => setIsOverviewOpen(!isOverviewOpen)}
     >
-      <CardHeader className="flex">
+      <CardHeader className="p-2">
         <Image
           src={`http://image.tmdb.org/t/p/original/${posterPath}`}
           alt=""
@@ -37,7 +37,7 @@ const MovieCard = ({ title, overview, posterPath }: Props) => {
           height={800}
           className="rounded-sm"
         />
-        <div className="h-10 p-6 rounded-sm flex items-center justify-center bg-gray-500">
+        <div className="h-5 p-2 rounded-sm flex items-center justify-center bg-gray-500">
           <CardTitle className="text-header-1 text-gray-200">{title}</CardTitle>
         </div>
       </CardHeader>
@@ -45,8 +45,9 @@ const MovieCard = ({ title, overview, posterPath }: Props) => {
         variants={variants}
         initial="hidden"
         animate={isOverviewOpen ? 'visible' : 'hidden'}
+        className="p-2 pt-0"
       >
-        <CardContent className="p-6 rounded-sm text-body-1 bg-gray-800 text-gray-200">
+        <CardContent className="p-2 rounded-sm text-body-1 bg-gray-800 text-gray-200">
           <p> {overview}</p>
         </CardContent>
       </motion.div>
