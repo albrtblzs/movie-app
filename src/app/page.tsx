@@ -5,12 +5,16 @@ const content = {
   title: 'Movie application',
 }
 
+const movieData = {
+  title: 'Title',
+  overview: 'Overview',
+  posterPath: '/bUCnDHbDA0nzwxtpsDMBKmpmDah.jpg',
+}
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Section title={content.title}>
-        <div>Content</div>
-        <MovieCard />
+        <MovieCard {...movieData} />
       </Section>
     </main>
   )

@@ -6,20 +6,31 @@ import {
   CardContent,
   CardFooter,
 } from '../_common/components/ui/card'
+import Image from 'next/image'
 
-const MovieCard = () => {
+type Props = {
+  title: string
+  overview: string
+  posterPath: string
+}
+const MovieCard = ({ title, overview, posterPath }: Props) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+    <Card className="rounded-sm bg-gray-300">
+      <CardHeader className="flex">
+        <Image
+          src={`http://image.tmdb.org/t/p/original/${posterPath}`}
+          alt=""
+          width={500}
+          height={800}
+          className="rounded-sm"
+        />
+        <div className="h-10 p-6 rounded-sm flex items-center justify-centers bg-gray-500">
+          <CardTitle className="text-header-1 text-gray-200">{title}</CardTitle>
+        </div>
       </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
+      <CardContent className="p-6 rounded-sm text-body-1 bg-gray-800 text-gray-200">
+        <p> {overview}</p>
       </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
     </Card>
   )
 }
