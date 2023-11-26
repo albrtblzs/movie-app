@@ -54,7 +54,10 @@ const MovieList = () => {
         selectedMovie={selectedMovie}
         onDialogChange={onDialogChange}
       />
-      <Search onRefetch={onSearchQueryChange} />
+      <div className="flex flex-row items-center justify-between">
+        <div>Notification (Results from cache/API)</div>
+        <Search onRefetch={onSearchQueryChange} />
+      </div>
       <div className=" flex flex-row flex-wrap">
         {moviesResults?.results &&
           moviesResults.results.map((movie) => (
