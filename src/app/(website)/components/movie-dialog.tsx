@@ -16,11 +16,11 @@ const MovieDialog = ({ selectedMovie, onDialogChange }: Props) => {
   return (
     <Dialog open={selectedMovie !== null} onOpenChange={onDialogChange}>
       <DialogContent
-        className="rounded-sm bg-gray-800 cursor-pointer max-w-[900px] border-none"
+        className="rounded-sm bg-gray-800 cursor-pointer sm:max-w-auto md:max-w-[900px] xl:max-w-[900px] border-none max-lg:h-[80vh] overflow-y-auto"
         color="white"
       >
-        <DialogHeader className="p-2 flex flex-col lg:flex-row gap-2">
-          <div className="w-1/2 relative aspect-[5/8] ">
+        <DialogHeader className="p-2 flex flex-col md:flex-row gap-2">
+          <div className="md:w-1/2 relative aspect-[5/8]">
             {selectedMovie?.poster_path && (
               <Image
                 src={`http://image.tmdb.org/t/p/w500${selectedMovie?.poster_path}`}
@@ -32,10 +32,10 @@ const MovieDialog = ({ selectedMovie, onDialogChange }: Props) => {
               />
             )}
           </div>
-          <div className="w-1/2 flex flex-col justify-between">
+          <div className="md:w-1/2 flex flex-col justify-between">
             <DialogTitle className="flex flex-col gap-2 p-2 text-header-1 text-gray-100">
               <h1>{selectedMovie?.title}</h1>
-              <h3>{selectedMovie?.overview}</h3>
+              <p>{selectedMovie?.overview}</p>
             </DialogTitle>
             <DialogDescription className="flex flex-col gap-1 p-2 rounded-sm text-body-1 bg-gray-800 text-gray-200">
               <p>Original language: {selectedMovie?.original_language}</p>
