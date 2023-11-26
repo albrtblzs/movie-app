@@ -1,9 +1,9 @@
 import axios from 'axios'
 import MovieData from '../../types/movie-data';
 
-async function fethcMovie(query: string | null) {
+async function fethcMovie(query: string | null, page: number) {
   return await axios<MovieData>(
-    `https://api.themoviedb.org/3/search/movie?language=en-US&query=${query}&page=1`
+    `https://api.themoviedb.org/3/search/movie?query=${query}&page=${page}`
     , {
       headers: {
         accept: 'application/json',
