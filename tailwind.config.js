@@ -33,12 +33,11 @@ module.exports = {
     },
     container: {
       center: true,
-      // padding: "2rem",
-      // screens: {
-      //   "2xl": "1400px",
-      // },
     },
     extend: {
+      aspectRatio: {
+        '5/8': '5 / 8'
+      },
       minHeight: (theme) => ({
         ...theme('spacing')
       }),
@@ -55,7 +54,7 @@ module.exports = {
         'header-1': [
           'clamp(2rem, 1.3333rem + 1.3889vw, 3rem)',
           {
-            lineHeight: 'normal',
+            lineHeight: 1.05,
             fontWeight: 700
           }
         ],
