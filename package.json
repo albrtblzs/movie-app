@@ -11,11 +11,15 @@
   "dependencies": {
     "add": "^2.0.6",
     "axios": "^1.6.2",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.5",
     "http-status-code": "^2.1.0",
     "ioredis": "^5.3.2",
     "next": "14.0.3",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18.2.0",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/http-status-codes": "^1.2.0",
@@ -26,7 +30,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0",
+    "tailwindcss": "^3.3.5",
     "typescript": "^5"
   }
 }
