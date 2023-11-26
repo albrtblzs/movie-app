@@ -34,8 +34,8 @@ const MovieDialog = ({ selectedMovie, onDialogChange }: Props) => {
           </div>
           <div className="md:w-1/2 flex flex-col justify-between">
             <DialogTitle className="flex flex-col gap-2 p-2 text-header-1 text-gray-100">
-              <h1>{selectedMovie?.title}</h1>
-              <p>{selectedMovie?.overview}</p>
+              <div className="text-header-1">{selectedMovie?.title}</div>
+              <div className="text-body-1">{selectedMovie?.overview}</div>
             </DialogTitle>
             <DialogDescription className="flex flex-col gap-1 p-2 rounded-sm text-body-1 bg-gray-800 text-gray-200">
               <p>Original language: {selectedMovie?.original_language}</p>

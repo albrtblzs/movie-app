@@ -56,7 +56,7 @@ const MovieList = () => {
       />
       <div className="flex flex-col-reverse md:flex-row items-center justify-between">
         <div className="w-full md:w-1/3">
-          Notification (Results from cache/API)
+          Notification: Result from {moviesResults?.isCached ? 'cache' : 'API'}
         </div>
         <div className="w-full md:w-2/3">
           <Search onRefetch={onSearchQueryChange} />
