@@ -19,7 +19,7 @@ const MovieCard = ({ title, overview, posterPath }: Props) => {
         <div className="relative aspect-[5/8] w-full">
           {posterPath && (
             <Image
-              src={`http://image.tmdb.org/t/p/original${posterPath}`}
+              src={`http://image.tmdb.org/t/p/w500${posterPath}`}
               alt=""
               layout="fill"
               objectFit="cover"
