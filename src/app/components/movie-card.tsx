@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import {
   Card,
   CardHeader,
@@ -8,7 +5,6 @@ import {
   CardContent,
 } from '../_common/components/ui/card'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 
 type Props = {
   title: string
@@ -16,19 +12,9 @@ type Props = {
   posterPath: string
 }
 
-const variants = {
-  hidden: { opacity: 0, scale: 0 },
-  visible: { opacity: 1, scale: 1 },
-}
-
 const MovieCard = ({ title, overview, posterPath }: Props) => {
-  const [isOverviewOpen, setIsOverviewOpen] = useState(false)
-
   return (
-    <Card
-      className="rounded-sm bg-gray-300 cursor-pointer"
-      onClick={() => setIsOverviewOpen(!isOverviewOpen)}
-    >
+    <Card className="rounded-sm bg-gray-300 cursor-pointer">
       <CardHeader className="p-2">
         <Image
           src={`http://image.tmdb.org/t/p/original/${posterPath}`}
@@ -41,16 +27,11 @@ const MovieCard = ({ title, overview, posterPath }: Props) => {
           <CardTitle className="text-header-1 text-gray-200">{title}</CardTitle>
         </div>
       </CardHeader>
-      <motion.div
-        variants={variants}
-        initial="hidden"
-        animate={isOverviewOpen ? 'visible' : 'hidden'}
-        className="p-2 pt-0"
-      >
+      <div className="p-2 pt-0">
         <CardContent className="p-2 rounded-sm text-body-1 bg-gray-800 text-gray-200">
           <p> {overview}</p>
         </CardContent>
-      </motion.div>
+      </div>
     </Card>
   )
 }
