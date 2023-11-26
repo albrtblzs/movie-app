@@ -14,7 +14,7 @@ const Pagination = ({ index, onPageChange, totalCount, pages }: Props) => {
         variant="outline"
         size="sm"
         onClick={() => onPageChange(-1)}
-        // disabled={index <= 0}
+        disabled={index === 1}
         className="cursor-pointer"
       >
         <ChevronLeft />
@@ -26,7 +26,7 @@ const Pagination = ({ index, onPageChange, totalCount, pages }: Props) => {
         variant="outline"
         size="sm"
         onClick={() => onPageChange(1)}
-        // disabled={index + 1 >= 0}
+        disabled={index === pages}
         className="cursor-pointer"
       >
         <ChevronRight />

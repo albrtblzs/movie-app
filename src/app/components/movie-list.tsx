@@ -1,44 +1,49 @@
 'use client'
 
-import { useState } from 'react'
 import useMovies from '../hooks/use-movies'
 import MovieCard from './movie-card'
 import Pagination from './pagination'
 import Search from './search'
-
-const movieData = {
-  title: 'Title',
-  overview: 'Overview',
-  posterPath: '/bUCnDHbDA0nzwxtpsDMBKmpmDah.jpg',
-}
+import { useSearchParams, useRouter } from 'next/navigation'
 
 const MovieList = () => {
-  const [index, setIndex] = useState(1)
-  const [query, setQuery] = useState('')
+  const searchParams = useSearchParams()
+  const router = useRouter()
 
-  const { data: moviesResults, isLoading } = useMovies(index, query)
+  const selectedQuery = searchParams.get('query') || ''
+  const selectedPage = Number(searchParams.get('page') || 1)
+
+  const { data: moviesResults, isLoading } = useMovies(
+    selectedPage,
+    selectedQuery
+  )
 
   if (isLoading) return 'Betöltés...'
 
   const onPageChange = (direction: number) => {
-    if (index + direction > 0) setIndex((i) => i + direction)
+    if (selectedPage + direction > 0) {
+      console.log('calculate', { selectedPage, direction })
+      router.push(
+        `?${new URLSearchParams({
+          page: String(selectedPage + direction),
+          query: selectedQuery,
+        })}`
+      )
+    }
   }
 
   const onSearchQueryChange = (query: string) => {
-    setQuery(query)
+    router.push(
+      `?${new URLSearchParams({
+        page: String(selectedPage),
+        query: query,
+      })}`
+    )
   }
 
   return (
     <div className="w-full">
-      <div className="flex flex-row  justify-between items-center">
-        <Pagination
-          index={index}
-          onPageChange={onPageChange}
-          totalCount={moviesResults?.total_results ?? 0}
-          pages={moviesResults?.total_pages ?? 0}
-        />
-        <Search onRefetch={onSearchQueryChange} />
-      </div>
+      <Search onRefetch={onSearchQueryChange} />
       <div className=" flex flex-row flex-wrap">
         {moviesResults?.results &&
           moviesResults.results.map((movie) => (
@@ -53,7 +58,7 @@ const MovieList = () => {
       </div>
       <div className="flex flex-row  justify-between items-center">
         <Pagination
-          index={index}
+          index={selectedPage}
           onPageChange={onPageChange}
           totalCount={moviesResults?.total_results ?? 0}
           pages={moviesResults?.total_pages ?? 0}
