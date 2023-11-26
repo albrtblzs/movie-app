@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '../_common/components/ui/button'
+import { Button } from '../../_common/components/ui/button'
 
 type Props = {
   index: number

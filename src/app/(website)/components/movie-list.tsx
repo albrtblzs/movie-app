@@ -22,7 +22,6 @@ const MovieList = () => {
 
   const onPageChange = (direction: number) => {
     if (selectedPage + direction > 0) {
-      console.log('calculate', { selectedPage, direction })
       router.push(
         `?${new URLSearchParams({
           page: String(selectedPage + direction),
@@ -56,14 +55,12 @@ const MovieList = () => {
             </div>
           ))}
       </div>
-      <div className="flex flex-row  justify-between items-center">
-        <Pagination
-          index={selectedPage}
-          onPageChange={onPageChange}
-          totalCount={moviesResults?.total_results ?? 0}
-          pages={moviesResults?.total_pages ?? 0}
-        />
-      </div>
+      <Pagination
+        index={selectedPage}
+        onPageChange={onPageChange}
+        totalCount={moviesResults?.total_results ?? 0}
+        pages={moviesResults?.total_pages ?? 0}
+      />
     </div>
   )
 }

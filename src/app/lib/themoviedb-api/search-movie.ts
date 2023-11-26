@@ -1,5 +1,5 @@
 import axios from 'axios'
-import MovieData from '../../types/movie-data';
+import MovieData from '../../_common/types/movie-data';
 
 async function fethcMovie(query: string | null, page: number) {
   return await axios<MovieData>(
