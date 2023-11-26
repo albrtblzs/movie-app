@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import useMovies from '../hooks/use-movies'
 import MovieCard from './movie-card'
 import Pagination from './pagination'
@@ -8,6 +8,7 @@ import Search from './search'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Movie from '@/app/_common/types/movie'
 import MovieDialog from './movie-dialog'
+import toaster from '@/app/_common/components/toaster'
 
 const MovieList = () => {
   const searchParams = useSearchParams()
@@ -21,6 +22,17 @@ const MovieList = () => {
     selectedPage,
     selectedQuery
   )
+
+  useEffect(() => {
+    if (moviesResults) {
+      toaster({
+        message: `Notification: Results from ${
+          moviesResults?.isCached ? 'cache' : 'API'
+        }`,
+        type: 'info',
+      })
+    }
+  }, [moviesResults])
 
   if (isLoading) return 'Betöltés...'
 
@@ -55,9 +67,9 @@ const MovieList = () => {
         onDialogChange={onDialogChange}
       />
       <div className="flex flex-col-reverse md:flex-row items-center justify-between">
-        <div className="w-full md:w-1/3">
-          Notification: Result from {moviesResults?.isCached ? 'cache' : 'API'}
-        </div>
+        {/* <div className="w-full md:w-1/3">
+          Notification: Results from {moviesResults?.isCached ? 'cache' : 'API'}
+        </div> */}
         <div className="w-full md:w-2/3">
           <Search onRefetch={onSearchQueryChange} />
         </div>

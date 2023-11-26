@@ -16,7 +16,7 @@ const MovieDialog = ({ selectedMovie, onDialogChange }: Props) => {
   return (
     <Dialog open={selectedMovie !== null} onOpenChange={onDialogChange}>
       <DialogContent
-        className="rounded-sm bg-gray-800 cursor-pointer sm:max-w-auto md:max-w-[900px] xl:max-w-[900px] border-none max-lg:h-[80vh] overflow-y-auto"
+        className="rounded-sm bg-gray-800 cursor-pointer sm:max-w-auto md:max-w-[900px] xl:max-w-[900px] border-none h-[80vh] overflow-y-auto"
         color="white"
       >
         <DialogHeader className="p-2 flex flex-col md:flex-row gap-2">
