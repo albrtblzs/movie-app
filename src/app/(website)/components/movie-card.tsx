@@ -1,9 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from '../../_common/components/ui/card'
+import { Card, CardHeader, CardTitle } from '../../_common/components/ui/card'
 import Image from 'next/image'
 
 type Props = {
@@ -28,18 +23,13 @@ const MovieCard = ({ title, overview, posterPath }: Props) => {
               className="rounded-sm"
             />
           )}
-          <div className="w-full bottom-2  absolute  p-2 z-20 flex items-start justify-center">
+          <div className="w-full bottom-2  absolute  px-1 z-20 flex items-start justify-center">
             <CardTitle className="text-header-2 text-gray-200 line-clamp-3">
               {title}
             </CardTitle>
           </div>
         </div>
       </CardHeader>
-      {/* <div className="p-2 pt-0">
-        <CardContent className="h-[120px] p-2 rounded-sm text-body-1 bg-gray-800 text-gray-200">
-          <p className="line-clamp-3"> {overview}</p>
-        </CardContent>
-      </div> */}
     </Card>
   )
 }
