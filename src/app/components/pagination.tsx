@@ -8,7 +8,7 @@ type Props = {
   pages: number
 }
 const Pagination = ({ index, onPageChange, totalCount, pages }: Props) => {
-  return (
+  return totalCount ? (
     <div className="flex items-center justify-center space-x-2 py-2">
       <Button
         variant="outline"
@@ -32,6 +32,8 @@ const Pagination = ({ index, onPageChange, totalCount, pages }: Props) => {
         <ChevronRight />
       </Button>
     </div>
+  ) : (
+    <></>
   )
 }
 
