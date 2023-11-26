@@ -3,11 +3,10 @@ import Image from 'next/image'
 
 type Props = {
   title: string
-  overview: string
   posterPath: string
 }
 
-const MovieCard = ({ title, overview, posterPath }: Props) => {
+const MovieCard = ({ title, posterPath }: Props) => {
   return (
     <Card className="rounded-sm bg-gray-300 cursor-pointer">
       <CardHeader className="p-2">

@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import Search from './(website)/components/search'
-import Section from './_common/components/ui/section'
+import Section from './_common/components/section'
 
 export default function Home() {
   const router = useRouter()

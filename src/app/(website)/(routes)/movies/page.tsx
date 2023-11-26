@@ -1,5 +1,5 @@
 import MovieList from '@/app/(website)/components/movie-list'
-import Section from '@/app/_common/components/ui/section'
+import Section from '@/app/_common/components/section'
 
 const MoviesPage = () => {
   return (

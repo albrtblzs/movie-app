@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import useMovies from '../hooks/use-movies'
 import MovieCard from './movie-card'
 import Pagination from './pagination'
@@ -8,6 +8,7 @@ import Search from './search'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Movie from '@/app/_common/types/movie'
 import MovieDialog from './movie-dialog'
+import toaster from '@/app/_common/components/toaster'
 
 const MovieList = () => {
   const searchParams = useSearchParams()
@@ -21,6 +22,17 @@ const MovieList = () => {
     selectedPage,
     selectedQuery
   )
+
+  // useEffect(() => {
+  //   if (moviesResults) {
+  //     toaster({
+  //       message: `Notification: Results from ${
+  //         moviesResults?.isCached ? 'cache' : 'API'
+  //       }`,
+  //       type: 'info',
+  //     })
+  //   }
+  // }, [moviesResults])
 
   if (isLoading) return 'Betöltés...'
 
@@ -49,28 +61,28 @@ const MovieList = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="lg:w-[1000px]">
       <MovieDialog
         selectedMovie={selectedMovie}
         onDialogChange={onDialogChange}
       />
-      <div className="flex flex-row items-center justify-between">
-        <div>Notification (Results from cache/API)</div>
-        <Search onRefetch={onSearchQueryChange} />
+      <div className="flex flex-col-reverse md:flex-row items-center justify-between">
+        <div className="w-full md:w-1/3">
+          Notification: Results from {moviesResults?.isCached ? 'cache' : 'API'}
+        </div>
+        <div className="w-full md:w-2/3">
+          <Search onRefetch={onSearchQueryChange} />
+        </div>
       </div>
       <div className=" flex flex-row flex-wrap">
         {moviesResults?.results &&
           moviesResults.results.map((movie) => (
             <div
               key={movie.id}
-              className="w-[calc(25%-16px)] m-1"
+              className=" w-[calc(100%-16px)] sm:w-[calc(50%-16px)] md:w-[calc(25%-16px)] m-1"
               onClick={() => setSelectedMovie(movie)}
             >
-              <MovieCard
-                title={movie.title}
-                overview={movie.overview}
-                posterPath={movie.poster_path}
-              />
+              <MovieCard title={movie.title} posterPath={movie.poster_path} />
             </div>
           ))}
       </div>
