@@ -7,10 +7,13 @@ export async function GET(req: NextRequest) {
   try {
 
     const query = req.nextUrl.searchParams.get('query')
+    const pageNumber = Number(req.nextUrl.searchParams.get('page'));
+
+    const page = isNaN(pageNumber) || pageNumber === 0 ? 1 : pageNumber;
 
     const redis = createRedisInstance();
 
-    const key = query || 'null'
+    const key = `query=${query}&page=${page}`
 
     const cached = await redis.get(key);
 
@@ -25,7 +28,7 @@ export async function GET(req: NextRequest) {
       return res
     }
 
-    const response = await fethcMovie(query)
+    const response = await fethcMovie(query, page)
 
     const MAX_AGE = 2 * 60 * 1000; // 2 minutes
     const EXPIRY_MS = `PX`; // milliseconds
