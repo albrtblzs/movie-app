@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
-import { WithTotal } from "../types/pagination"
-import Movie from "../types/movie"
+import { WithTotal } from "../../_common/types/pagination"
+import Movie from "../../_common/types/movie"
 
 const useMovies = (
   nextPage: number,

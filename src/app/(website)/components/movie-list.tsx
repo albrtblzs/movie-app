@@ -1,14 +1,18 @@
 'use client'
 
+import { useState } from 'react'
 import useMovies from '../hooks/use-movies'
 import MovieCard from './movie-card'
 import Pagination from './pagination'
 import Search from './search'
 import { useSearchParams, useRouter } from 'next/navigation'
+import Movie from '@/app/_common/types/movie'
+import MovieDialog from './movie-dialog'
 
 const MovieList = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
 
   const selectedQuery = searchParams.get('query') || ''
   const selectedPage = Number(searchParams.get('page') || 1)
@@ -22,7 +26,6 @@ const MovieList = () => {
 
   const onPageChange = (direction: number) => {
     if (selectedPage + direction > 0) {
-      console.log('calculate', { selectedPage, direction })
       router.push(
         `?${new URLSearchParams({
           page: String(selectedPage + direction),
@@ -41,13 +44,28 @@ const MovieList = () => {
     )
   }
 
+  const onDialogChange = (open: boolean) => {
+    if (!open) setSelectedMovie(null)
+  }
+
   return (
     <div className="w-full">
-      <Search onRefetch={onSearchQueryChange} />
+      <MovieDialog
+        selectedMovie={selectedMovie}
+        onDialogChange={onDialogChange}
+      />
+      <div className="flex flex-row items-center justify-between">
+        <div>Notification (Results from cache/API)</div>
+        <Search onRefetch={onSearchQueryChange} />
+      </div>
       <div className=" flex flex-row flex-wrap">
         {moviesResults?.results &&
           moviesResults.results.map((movie) => (
-            <div key={movie.id} className="w-[calc(25%-16px)] m-1">
+            <div
+              key={movie.id}
+              className="w-[calc(25%-16px)] m-1"
+              onClick={() => setSelectedMovie(movie)}
+            >
               <MovieCard
                 title={movie.title}
                 overview={movie.overview}
@@ -56,14 +74,14 @@ const MovieList = () => {
             </div>
           ))}
       </div>
-      <div className="flex flex-row  justify-between items-center">
+      {moviesResults?.total_results && moviesResults.total_results > 20 && (
         <Pagination
           index={selectedPage}
           onPageChange={onPageChange}
           totalCount={moviesResults?.total_results ?? 0}
           pages={moviesResults?.total_pages ?? 0}
         />
-      </div>
+      )}
     </div>
   )
 }
