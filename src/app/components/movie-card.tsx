@@ -17,14 +17,16 @@ const MovieCard = ({ title, overview, posterPath }: Props) => {
     <Card className="rounded-sm bg-gray-300 cursor-pointer">
       <CardHeader className="p-2">
         <div className="relative aspect-[5/8] w-full">
-          <Image
-            src={`http://image.tmdb.org/t/p/original${posterPath}`}
-            alt=""
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center"
-            className="rounded-sm"
-          />
+          {posterPath && (
+            <Image
+              src={`http://image.tmdb.org/t/p/original${posterPath}`}
+              alt=""
+              layout="fill"
+              objectFit="cover"
+              objectPosition="center"
+              className="rounded-sm"
+            />
+          )}
         </div>
         <div className="h-[100px] p-2 rounded-sm flex items-start justify-center bg-gray-500">
           <CardTitle className="text-header-1 text-gray-200 line-clamp-3">
