@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useMovies from '../hooks/use-movies'
 import MovieCard from './movie-card'
 import Pagination from './pagination'
@@ -9,6 +9,8 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import Movie from '@/app/_common/types/movie'
 import MovieDialog from './movie-dialog'
 import toaster from '@/app/_common/components/toaster'
+import errorMessageConverter from '@/app/_common/utils/error-message-converter'
+import Error from '../(routes)/movies/error'
 
 const MovieList = () => {
   const searchParams = useSearchParams()
@@ -18,10 +20,14 @@ const MovieList = () => {
   const selectedQuery = searchParams.get('query') || ''
   const selectedPage = Number(searchParams.get('page') || 1)
 
-  const { data: moviesResults, isLoading } = useMovies(
-    selectedPage,
-    selectedQuery
-  )
+  const {
+    data: moviesResults,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+    refetch,
+  } = useMovies(selectedPage, selectedQuery)
 
   // useEffect(() => {
   //   if (moviesResults) {
@@ -33,6 +39,26 @@ const MovieList = () => {
   //     })
   //   }
   // }, [moviesResults])
+
+  if (isSuccess) {
+    toaster({
+      message: `Notification: Results from ${
+        moviesResults?.isCached ? 'cache' : 'API'
+      }`,
+      type: 'info',
+    })
+  }
+
+  if (isError) {
+    toaster({
+      message: errorMessageConverter(error.message),
+      type: 'error',
+    })
+    const handleReset = () => {
+      refetch()
+    }
+    return <Error error={error} reset={handleReset} />
+  }
 
   if (isLoading) return 'Betöltés...'
 
@@ -66,14 +92,7 @@ const MovieList = () => {
         selectedMovie={selectedMovie}
         onDialogChange={onDialogChange}
       />
-      <div className="flex flex-col-reverse md:flex-row items-center justify-between">
-        <div className="w-full md:w-1/3">
-          Notification: Results from {moviesResults?.isCached ? 'cache' : 'API'}
-        </div>
-        <div className="w-full md:w-2/3">
-          <Search onRefetch={onSearchQueryChange} />
-        </div>
-      </div>
+      <Search onRefetch={onSearchQueryChange} />
       <div className=" flex flex-row flex-wrap">
         {moviesResults?.results &&
           moviesResults.results.map((movie) => (
