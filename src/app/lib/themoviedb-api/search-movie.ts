@@ -1,7 +1,7 @@
 import axios from 'axios'
 import MovieData from '../../_common/types/movie-data';
 
-async function fethcMovie(query: string | null, page: number) {
+async function searchMovies(query: string | null, page: number) {
   return await axios<MovieData>(
     `https://api.themoviedb.org/3/search/movie?query=${query}&page=${page}`
     , {
@@ -12,4 +12,4 @@ async function fethcMovie(query: string | null, page: number) {
     })
 }
 
-export default fethcMovie
+export default searchMovies

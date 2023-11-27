@@ -4,6 +4,7 @@ import handleCaching from "./handle-caching";
 
 export async function GET(req: NextRequest) {
   try {
+
     const query = req.nextUrl.searchParams.get('query')
     const pageNumber = Number(req.nextUrl.searchParams.get('page'));
     const page = isNaN(pageNumber) || pageNumber === 0 ? 1 : pageNumber;
