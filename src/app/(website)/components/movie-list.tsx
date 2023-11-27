@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import useMovies from '../hooks/use-movies'
 import MovieCard from './movie-card'
 import Pagination from './pagination'
@@ -11,8 +11,10 @@ import MovieDialog from './movie-dialog'
 import toaster from '@/app/_common/components/toaster'
 import errorMessageConverter from '@/app/_common/utils/error-message-converter'
 import Error from '../(routes)/movies/error'
+import { useTranslation } from '@/app/i18n/client'
 
 const MovieList = () => {
+  const { t } = useTranslation()
   const searchParams = useSearchParams()
   const router = useRouter()
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
@@ -29,22 +31,11 @@ const MovieList = () => {
     refetch,
   } = useMovies(selectedPage, selectedQuery)
 
-  // useEffect(() => {
-  //   if (moviesResults) {
-  //     toaster({
-  //       message: `Notification: Results from ${
-  //         moviesResults?.isCached ? 'cache' : 'API'
-  //       }`,
-  //       type: 'info',
-  //     })
-  //   }
-  // }, [moviesResults])
-
   if (isSuccess) {
     toaster({
-      message: `Notification: Results from ${
-        moviesResults?.isCached ? 'cache' : 'API'
-      }`,
+      message: t('cach_notification', {
+        place: moviesResults?.isCached ? 'cache' : 'API',
+      }),
       type: 'info',
     })
   }
@@ -60,7 +51,7 @@ const MovieList = () => {
     return <Error error={error} reset={handleReset} />
   }
 
-  if (isLoading) return 'Betöltés...'
+  if (isLoading) return t('loading')
 
   const onPageChange = (direction: number) => {
     if (selectedPage + direction > 0) {

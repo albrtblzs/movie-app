@@ -1,0 +1,16 @@
+{
+  "home_title": "Movies",
+  "search_placeholder": "Search...",
+  "search_button_title": "Search",
+  "pagination_pages": "Pages",
+  "cach_notification": "Notification: Results from {{place}}",
+  "loading": "Betöltés...",
+  "language": "Original language",
+  "origin_title": "Original title",
+  "popularity": "Popularity",
+  "release_date": "Release date",
+  "vote_average": "Vote average",
+  "vote_count": "Vote average",
+  "error_page_title": "Something went wrong!",
+  "try_again": "Try again"
+}
