@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import Search from './(website)/components/search'
 import Section from './_common/components/section'
+import HeroSection from './(website)/components/hero'
 
 export default function Home() {
   const router = useRouter()
@@ -18,9 +19,9 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Section>
+      <HeroSection title="Movie application">
         <Search onRefetch={onSearchQueryChange} />
-      </Section>
+      </HeroSection>
     </main>
   )
 }

@@ -11,6 +11,7 @@ const Pagination = ({ index, onPageChange, totalCount, pages }: Props) => {
   return totalCount ? (
     <div className="flex items-center justify-center space-x-2 py-2">
       <Button
+        title="left"
         variant="outline"
         size="sm"
         onClick={() => onPageChange(-1)}
