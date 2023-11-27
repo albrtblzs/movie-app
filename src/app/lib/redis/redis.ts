@@ -27,7 +27,7 @@ function createRedisInstance(
       },
     };
 
-    const redis = new Redis(String(config.url), options);
+    const redis = new Redis(String(config.url) || '', options);
 
     redis.on('error', (error: unknown) => {
       console.warn('[Redis] Error connecting', error);

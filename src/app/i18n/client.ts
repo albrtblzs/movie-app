@@ -31,7 +31,6 @@ i18next
   })
 
 export function useTranslation(lng: string = 'en', ns?: string, options?: any) {
-  console.log(ns)
   const ret = useTranslationOrg(ns, options)
   const { i18n } = ret
   if (runsOnServerSide && lng && i18n.resolvedLanguage !== lng) {
