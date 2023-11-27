@@ -27,20 +27,11 @@ const MovieList = () => {
   const {
     data: moviesResults,
     isLoading,
-    isSuccess,
     isError,
     error,
     refetch,
+    isSuccess,
   } = useMovies(selectedPage, selectedQuery)
-
-  if (isSuccess) {
-    toaster({
-      message: t('cach_notification', {
-        place: moviesResults?.isCached ? 'cache' : 'API',
-      }),
-      type: 'info',
-    })
-  }
 
   if (isError) {
     toaster({
@@ -85,26 +76,47 @@ const MovieList = () => {
         selectedMovie={selectedMovie}
         onDialogChange={onDialogChange}
       />
-      <Search onRefetch={onSearchQueryChange} />
-      <div className=" flex flex-row flex-wrap">
-        {moviesResults?.results &&
-          moviesResults.results.map((movie) => (
-            <div
-              key={movie.id}
-              className=" w-[calc(100%-16px)] sm:w-[calc(50%-16px)] md:w-[calc(25%-16px)] m-1"
-              onClick={() => setSelectedMovie(movie)}
-            >
-              <MovieCard title={movie.title} posterPath={movie.poster_path} />
-            </div>
-          ))}
+      <div className="flex flex-col-reverse md:flex-row  items-center md:justify-between">
+        <div className="w-full md:w-1/3 bg-gray-800 h-6 rounded-sm pt-1">
+          {isSuccess && (
+            <p className="text-gray-300">
+              {t('cach_notification', {
+                place: moviesResults?.isCached ? 'cache' : 'API',
+              })}
+            </p>
+          )}
+        </div>
+        <div className="w-full md:w-2/3">
+          <Search onRefetch={onSearchQueryChange} />
+        </div>
       </div>
-      {moviesResults?.total_results && moviesResults.total_results > 20 && (
+      {moviesResults?.results && moviesResults.total_results > 0 ? (
+        <div className=" flex flex-row flex-wrap">
+          {moviesResults?.results &&
+            moviesResults.results.map((movie) => (
+              <div
+                key={movie.id}
+                className=" w-[calc(100%-16px)] sm:w-[calc(50%-16px)] md:w-[calc(25%-16px)] m-1"
+                onClick={() => setSelectedMovie(movie)}
+              >
+                <MovieCard title={movie.title} posterPath={movie.poster_path} />
+              </div>
+            ))}
+        </div>
+      ) : (
+        <div className="py-3 md:py-6">
+          <h2>{t('no_results', { query: selectedQuery })}</h2>
+        </div>
+      )}
+      {moviesResults?.total_results && moviesResults.total_results > 20 ? (
         <Pagination
           index={selectedPage}
           onPageChange={onPageChange}
           totalCount={moviesResults?.total_results ?? 0}
           pages={moviesResults?.total_pages ?? 0}
         />
+      ) : (
+        <></>
       )}
     </div>
   )

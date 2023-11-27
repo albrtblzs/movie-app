@@ -4,7 +4,7 @@
   "search_button_title": "Search",
   "pagination_pages": "Pages",
   "cach_notification": "Notification: Results from {{place}}",
-  "loading": "Betöltés...",
+  "loading": "Loading...",
   "language": "Original language",
   "origin_title": "Original title",
   "popularity": "Popularity",
@@ -12,5 +12,6 @@
   "vote_average": "Vote average",
   "vote_count": "Vote average",
   "error_page_title": "Something went wrong!",
-  "try_again": "Try again"
+  "try_again": "Try again",
+  "no_results": "No results for the following search: '{{query}}'"
 }
