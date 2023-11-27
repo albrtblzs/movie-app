@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Overview
+
+I developed a movie web application. The application is capable of searching, paginating, and displaying the selected movie in a dialog. Moreover, there is a cache handler on the backend limited to two minutes. On the client side, the user receives notifications via a "react-hot-toast" (e.g., data from cache or API, error messages). Exceptionally, I have left the required environment variable in the .env.example to check the local version, but the application has already been deployed on Vercel.
+
+Vercel link: https://movie-app-albrtblzs.vercel.app/
+
+## Future improvements
+
+In the future, more tests are needed for all the components to achieve full coverage. Furthermore, there is a need to modify the layout to get a better a UI/UX experience
+
 ## Getting Started
 
 First, run the development server:
