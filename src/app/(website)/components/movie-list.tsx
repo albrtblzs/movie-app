@@ -13,6 +13,8 @@ import errorMessageConverter from '@/app/_common/utils/error-message-converter'
 import Error from '../(routes)/movies/error'
 import { useTranslation } from '@/app/i18n/client'
 
+export const fetchCache = 'force-no-store'
+
 const MovieList = () => {
   const { t } = useTranslation()
   const searchParams = useSearchParams()
