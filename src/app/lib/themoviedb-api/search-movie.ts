@@ -9,7 +9,7 @@ async function fethcMovie(query: string | null, page: number) {
         accept: 'application/json',
         Authorization: `Bearer ${process.env.TMDB_API_KEY}`
       }
-    });
+    })
 }
 
 export default fethcMovie
