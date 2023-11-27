@@ -5,7 +5,6 @@ const errorMessages = {
 const errorMessageConverter = (errorMessage: string) => {
   const msg = Object.entries(errorMessages).filter((error) => {
     if (errorMessage.includes(error[0])) {
-      console.log(error[1])
       return error[1]
     }
   })

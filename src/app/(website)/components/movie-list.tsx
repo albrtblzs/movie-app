@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useMovies from '../hooks/use-movies'
 import MovieCard from './movie-card'
 import Pagination from './pagination'
@@ -10,6 +10,7 @@ import Movie from '@/app/_common/types/movie'
 import MovieDialog from './movie-dialog'
 import toaster from '@/app/_common/components/toaster'
 import errorMessageConverter from '@/app/_common/utils/error-message-converter'
+import Error from '../(routes)/movies/error'
 
 const MovieList = () => {
   const searchParams = useSearchParams()
@@ -22,26 +23,41 @@ const MovieList = () => {
   const {
     data: moviesResults,
     isLoading,
+    isSuccess,
     isError,
     error,
+    refetch,
   } = useMovies(selectedPage, selectedQuery)
 
-  useEffect(() => {
-    if (moviesResults) {
-      toaster({
-        message: `Notification: Results from ${
-          moviesResults?.isCached ? 'cache' : 'API'
-        }`,
-        type: 'info',
-      })
-    }
-  }, [moviesResults])
+  // useEffect(() => {
+  //   if (moviesResults) {
+  //     toaster({
+  //       message: `Notification: Results from ${
+  //         moviesResults?.isCached ? 'cache' : 'API'
+  //       }`,
+  //       type: 'info',
+  //     })
+  //   }
+  // }, [moviesResults])
+
+  if (isSuccess) {
+    toaster({
+      message: `Notification: Results from ${
+        moviesResults?.isCached ? 'cache' : 'API'
+      }`,
+      type: 'info',
+    })
+  }
 
   if (isError) {
     toaster({
       message: errorMessageConverter(error.message),
       type: 'error',
     })
+    const handleReset = () => {
+      refetch()
+    }
+    return <Error error={error} reset={handleReset} />
   }
 
   if (isLoading) return 'Betöltés...'
