@@ -67,7 +67,7 @@ const MovieList = () => {
   const onSearchQueryChange = (query: string) => {
     router.push(
       `?${new URLSearchParams({
-        page: String(selectedPage),
+        page: String(1),
         query: query,
       })}`
     )
