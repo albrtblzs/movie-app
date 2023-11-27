@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { Search as SearchIcon } from 'lucide-react'
 import { Button } from '@/app/_common/components/ui/button'
-import { useTranslation } from '@/app/i18n/client'
 
 type Props = {
   onRefetch: (query: string) => void
 }
 const Search = ({ onRefetch }: Props) => {
-  const { t } = useTranslation()
   const [query, setQuery] = useState('')
 
   const handleKeyDown = async (
@@ -24,7 +22,7 @@ const Search = ({ onRefetch }: Props) => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder={t('search_placeholder')}
+        placeholder={'Search...'}
         onKeyDown={handleKeyDown}
         className="w-full placeholder-gray-500 text-gray-500 text-body-1 place-content-center bg-transparent focus:ring-0 spx-2"
       />
@@ -35,7 +33,7 @@ const Search = ({ onRefetch }: Props) => {
         disabled={!query}
         className="cursor-pointer bg-gray-500 h-6"
       >
-        {t('search_button_title')}
+        Search
       </Button>
     </div>
   )
