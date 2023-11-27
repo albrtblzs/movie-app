@@ -8,7 +8,7 @@ Vercel link: https://movie-app-albrtblzs.vercel.app/
 
 ## Future improvements
 
-In the future, more tests are needed for all the components to achieve full coverage. Furthermore, there is a need to modify the layout to get a better a UI/UX experience
+In the future, more tests are needed for all the components to achieve full coverage. Furthermore, need to modify the layout to get a better UI/UX experience
 
 ## Getting Started
 
