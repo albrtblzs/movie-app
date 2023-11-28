@@ -15,6 +15,7 @@ type Props = {
 }
 const MovieDialog = ({ selectedMovie, onDialogChange }: Props) => {
   const { t } = useTranslation()
+  const fullPosterPath = `http://image.tmdb.org/t/p/w500${selectedMovie?.poster_path}`
 
   return (
     <Dialog open={selectedMovie !== null} onOpenChange={onDialogChange}>
@@ -26,8 +27,8 @@ const MovieDialog = ({ selectedMovie, onDialogChange }: Props) => {
           <div className="md:w-1/2 relative aspect-[5/8]">
             {selectedMovie?.poster_path && (
               <Image
-                src={`http://image.tmdb.org/t/p/w500${selectedMovie?.poster_path}`}
-                alt={`http://image.tmdb.org/t/p/w500${selectedMovie?.poster_path}`}
+                src={fullPosterPath}
+                alt={fullPosterPath}
                 layout="fill"
                 objectFit="cover"
                 objectPosition="center"

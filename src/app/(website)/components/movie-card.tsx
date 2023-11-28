@@ -7,6 +7,8 @@ type Props = {
 }
 
 const MovieCard = ({ title, posterPath }: Props) => {
+  const fullPosterPath = `http://image.tmdb.org/t/p/w500${posterPath}`
+
   return (
     <Card className="rounded-sm bg-gray-300 cursor-pointer">
       <CardHeader className="p-2">
@@ -14,8 +16,8 @@ const MovieCard = ({ title, posterPath }: Props) => {
           <div className="w-full absolute bottom-0 h-3/4 bg-gradient-to-t from-neutral-800 to-transparent z-20 rounded-sm"></div>
           {posterPath && (
             <Image
-              src={`http://image.tmdb.org/t/p/w500${posterPath}`}
-              alt={`http://image.tmdb.org/t/p/w500${posterPath}`}
+              src={fullPosterPath}
+              alt={fullPosterPath}
               layout="fill"
               objectFit="cover"
               objectPosition="center"
