@@ -3,12 +3,14 @@ const errorMessages = {
 }
 
 const errorMessageConverter = (errorMessage: string) => {
+  console.log(errorMessage)
   const msg = Object.entries(errorMessages).filter((error) => {
     if (errorMessage.includes(error[0])) {
       return error[1]
     }
   })
-  if (msg) return msg[0][1]
+  console.log(msg)
+  if (msg.length !== 0) return msg[0][1]
   return errorMessage
 }
 

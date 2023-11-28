@@ -1,16 +1,7 @@
 import Redis, { RedisOptions } from 'ioredis';
 import config from '@/app/config';
 
-type Maybe<T> = T | undefined;
-
-function getRedisConfiguration(): {
-  url: Maybe<string>;
-} {
-  return config.redis;
-}
-
 function createRedisInstance(
-  config = getRedisConfiguration()
 ) {
   try {
     const options: RedisOptions = {
@@ -27,7 +18,7 @@ function createRedisInstance(
       },
     };
 
-    const redis = new Redis(String(config.url) || '', options);
+    const redis = new Redis(String(config.redis.url) || '', options);
 
     redis.on('error', (error: unknown) => {
       console.warn('[Redis] Error connecting', error);
