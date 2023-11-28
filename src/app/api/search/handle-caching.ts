@@ -1,12 +1,13 @@
-import createRedisInstance from "@/app/lib/redis/redis";
 import fethcMovie from "@/app/lib/themoviedb-api/search-movie";
 import axios from "axios";
 import { StatusCodes } from "http-status-codes";
 import { NextResponse } from "next/server";
+import redisInstance from "@/app/lib/redis/redis";
+
 
 async function handleCaching(query: string | null, page: number) {
   try {
-    const redis = createRedisInstance();
+    const redis = redisInstance;
 
     const key = `query=${query}&page=${page}`
 

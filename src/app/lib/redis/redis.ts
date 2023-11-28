@@ -39,4 +39,6 @@ function createRedisInstance(
   }
 }
 
-export default createRedisInstance
+const redisInstance = createRedisInstance();
+
+export default redisInstance;
